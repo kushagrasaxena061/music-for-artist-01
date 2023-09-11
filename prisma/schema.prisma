@@ -1,0 +1,86 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  email         String?   @unique
+  name          String?
+  username String? @unique
+  emailVerified DateTime?
+  image         String?
+  hashedPassword  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  favoriteIds   String[]  @db.ObjectId
+
+  accounts Account[]
+  songs    Song[]
+  nfts     Nft[]
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Song {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId             String   @db.ObjectId
+  title              String
+  copywriteholder    String
+  productionholder   String
+  recordlabel        String
+  copywriteyear      Int
+  productionyear     Int
+  artworkimage       String
+  artworksong        String
+  primarygenre       String
+  secondarygenre     String
+  language           String
+  copywritedocuments String?
+  postingdate        DateTime
+  uploadingdate      DateTime
+
+  nfts Nft[]
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Nft {
+  id                        String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId                    String  @db.ObjectId
+  blockchainname            String
+  priceinblockchaincurrency Float
+  totalnfts                 Int
+  imagefornft               String
+  videofornft               String?
+  createradress             String
+  owneraddress              String
+  songId                    String
+
+  song Song @relation(fields: [songId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
