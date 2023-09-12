@@ -78,8 +78,7 @@ html,body,:root{height: 100%;}
 }
 
 body {
-  background-color: black;
-  color-scheme: dark;
+  background-color: white;
 }
 
 .leaflet-bottom,

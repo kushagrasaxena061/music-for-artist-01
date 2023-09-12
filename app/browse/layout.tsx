@@ -2,7 +2,6 @@ import React from 'react';
 import { Nunito } from 'next/font/google'
 import Navbar from '@/components/Navbar/Navbar';
 import getCurrentUser from '@/actions/getCurrentUser';
-import Sidebar from '@/components/Sidebar/Sidebar';
 import ClientOnly from '@/components/ClientOnly';
 
 
@@ -28,10 +27,8 @@ export default async function BrowseLayout({
           <ClientOnly>
           <Navbar currentUser={currentUser}/>
 
-        <Sidebar currentUser={currentUser}>
 
           {children}
-        </Sidebar>
           </ClientOnly>
         
       </body>
