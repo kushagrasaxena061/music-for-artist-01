@@ -52,7 +52,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
             cursor-pointer
           "
         >
-          Airbnb your home
+          UPLOAD YOUR ART
         </div>
         <div 
         onClick={toggleOpen}

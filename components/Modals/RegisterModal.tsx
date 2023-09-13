@@ -18,8 +18,11 @@ import Modal from "./Modal";
 import Heading from "@/components/Heading";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import { useRouter } from "next/navigation";
 
 const RegisterModal= () => {
+  const router = useRouter()
+  
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -41,10 +44,11 @@ const RegisterModal= () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
 
-    axios.post('/api/register', data)
+    axios.post(`/api/artist`, data)
     .then(() => {
       toast.success('Registered!');
       registerModal.onClose();
+      router.refresh()
     })
     .catch((error) => {
       toast.error(error);

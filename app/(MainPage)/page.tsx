@@ -14,7 +14,7 @@ const MainPage =  () => {
     return <div>LOADING...</div>
   }
   if(status==="authenticated") {
-    router.push('/browse')
+    router.push(`/artist`)
     router.refresh()
   }
 

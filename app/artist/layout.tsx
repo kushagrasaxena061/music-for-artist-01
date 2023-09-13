@@ -3,6 +3,7 @@ import { Nunito } from 'next/font/google'
 import Navbar from '@/components/Navbar/Navbar';
 import getCurrentUser from '@/actions/getCurrentUser';
 import ClientOnly from '@/components/ClientOnly';
+import Browse from './page';
 
 
 export const metadata = {
@@ -25,12 +26,10 @@ export default async function BrowseLayout({
     <html lang="en">
       <body className={font.className}>
           <ClientOnly>
-          <Navbar currentUser={currentUser}/>
 
-
-          {children}
+        <Browse currentUser={currentUser}/>
           </ClientOnly>
-        
+       
       </body>
     </html>
   )
