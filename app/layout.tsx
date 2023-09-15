@@ -8,6 +8,7 @@ import ClientOnly from '@/components/ClientOnly';
 import Navbar from '@/components/Navbar/Navbar';
 import getCurrentUser from '@/actions/getCurrentUser';
 import ModalProvider from '@/providers/ModalProvider';
+import RentModal from '@/components/Modals/RentModal';
 
 export default async function RootLayout({
   children,
@@ -24,6 +25,7 @@ export default async function RootLayout({
           <ModalProvider/>
           <RegisterModal/>
           <LoginModal/>
+          <RentModal/>
           <ToasterProvider/>
           </ClientOnly>
           <div className="pb-12 pt-16">

@@ -9,6 +9,7 @@ import Container from './Container';
 
 
 
+
 interface NavbarProps {
   currentUser?: User | null;
 }
@@ -17,8 +18,13 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({
   currentUser,
 }) => {
+
+ 
+  
   //console.log({currentUser})
   //const { data: session, status } = useSession()
+
+  
   return ( 
     <div className="fixed w-full bg-white z-10 shadow-sm">
       <div

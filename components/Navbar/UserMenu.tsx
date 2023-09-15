@@ -9,6 +9,7 @@ import useRegisterModal from "@/hooks/useRegisterModal";
 import { User } from "@prisma/client";
 import MenuItem from "./MenuItem";
 import Avatar from "../Avatar";
+import useRentModal from "@/hooks/useRentModal";
 
 
 interface UserMenuProps {
@@ -23,8 +24,17 @@ const UserMenu: React.FC<UserMenuProps> = ({
 
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
+  const rentModal = useRentModal();
 
   const [isOpen, setIsOpen] = useState(false);
+
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+
+    rentModal.onOpen();
+  }, [loginModal, rentModal, currentUser]);
 
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
@@ -38,7 +48,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
         <div 
-          onClick={() => {}}
+          onClick={onRent}
           className="
             hidden
             md:block

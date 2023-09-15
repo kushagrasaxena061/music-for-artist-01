@@ -11,16 +11,16 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  email         String?   @unique
-  name          String?
-  username String? @unique
-  emailVerified DateTime?
-  image         String?
-  hashedPassword  String?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-  favoriteIds   String[]  @db.ObjectId
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  email          String?   @unique
+  name           String?
+  username       String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  favoriteIds    String[]  @db.ObjectId
 
   accounts Account[]
   songs    Song[]
@@ -57,12 +57,18 @@ model Song {
   productionyear     Int
   artworkimage       String
   artworksong        String
-  primarygenre       String
+  category           String
   secondarygenre     String
   language           String
   copywritedocuments String?
-  postingdate        DateTime
-  uploadingdate      DateTime
+  postingdate        String
+  uploadingdate      String
+  locationValue      String
+  lyrics             String
+  preview            String?
+  playlists          String[] @db.ObjectId
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 
   nfts Nft[]
 
@@ -70,8 +76,8 @@ model Song {
 }
 
 model Nft {
-  id                        String  @id @default(auto()) @map("_id") @db.ObjectId
-  userId                    String  @db.ObjectId
+  id                        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId                    String   @db.ObjectId
   blockchainname            String
   priceinblockchaincurrency Float
   totalnfts                 Int
@@ -80,6 +86,8 @@ model Nft {
   createradress             String
   owneraddress              String
   songId                    String
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
 
   song Song @relation(fields: [songId], references: [id], onDelete: Cascade)
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
