@@ -28,7 +28,7 @@ export default async function RootLayout({
           <RentModal/>
           <ToasterProvider/>
           </ClientOnly>
-          <div className="pb-12 pt-16">
+          <div className="pb-20 pt-28">
           {children}
         </div>
         </AuthProvider>

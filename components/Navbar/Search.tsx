@@ -18,7 +18,7 @@ const Search: React.FC<SearchProps> = ({currentUser}) => {
                 Home
             </div>
             </Link>
-            <Link href={`/artist/${currentUser?.id}/music`} >
+            <Link href={`/artist/${currentUser?.id}/music/songs`} >
             <div className='text-sm font-semibold px-6'>
                 Music
             </div>

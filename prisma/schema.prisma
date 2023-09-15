@@ -21,10 +21,13 @@ model User {
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
   favoriteIds    String[]  @db.ObjectId
+  
 
   accounts Account[]
   songs    Song[]
   nfts     Nft[]
+
+
 }
 
 model Account {
