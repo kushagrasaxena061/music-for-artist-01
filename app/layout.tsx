@@ -10,12 +10,14 @@ import getCurrentUser from '@/actions/getCurrentUser';
 import ModalProvider from '@/providers/ModalProvider';
 import RentModal from '@/components/Modals/RentModal';
 
+
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   const currentUser = await getCurrentUser()
+
   return (
     <html lang="en">
       <body>
@@ -27,6 +29,7 @@ export default async function RootLayout({
           <LoginModal/>
           <RentModal/>
           <ToasterProvider/>
+          
           </ClientOnly>
           <div className="pb-20 pt-28">
           {children}

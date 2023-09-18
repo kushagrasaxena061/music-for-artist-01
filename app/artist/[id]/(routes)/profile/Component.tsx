@@ -1,22 +1,20 @@
 import ClientOnly from '@/components/ClientOnly'
 import { User } from '@prisma/client'
 import React from 'react'
-import Console from '@/app/artist/[id]/(routes)/music/Console'
-import SongCard from '@/components/Songs/SongCard'
-import getSongs from '@/actions/getSongs'
 import Link from 'next/link'
+import { SafeSongs } from '@/types'
+import getCurrentUser from '@/actions/getCurrentUser'
+import SoloEdit from './SoloEdit'
 
 
 interface ComponentProps {
-  currentUser?: User | null
+  songs: SafeSongs[]
+  currentUser?:User | null
 }
 
 
-
-
-
-const Component: React.FC<ComponentProps> = async ({ currentUser }) => {
-  const fetchsongs = await getSongs()
+const Component: React.FC<ComponentProps> = async ({  songs }) => {
+  const currentUser = await getCurrentUser()
   return (
     <div>
       <ClientOnly>
@@ -52,11 +50,12 @@ const Component: React.FC<ComponentProps> = async ({ currentUser }) => {
           </div>
         </div>
         <div>
-          {fetchsongs.map((fetchsong: any) => {
+          {songs.map((fetchsong: any) => {
             return (
-              <SongCard
+              <SoloEdit
                 key={fetchsong.key}
                 data={fetchsong}
+                currentUser={currentUser}
               />
             )
           })}

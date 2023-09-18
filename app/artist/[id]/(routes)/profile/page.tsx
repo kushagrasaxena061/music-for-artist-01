@@ -1,10 +1,12 @@
 import React from 'react'
 import Component from './Component'
 import getCurrentUser from '@/actions/getCurrentUser'
+import getSongs from "@/actions/getSongs"
 
 
 const Profile = async () => {
   const currentUser = await getCurrentUser()
+  const fetchsongs = await getSongs()
   return (
     <div>
        <div className="bg-white pb-6 sm:pb-8 lg:pb-12">
@@ -21,7 +23,7 @@ const Profile = async () => {
           </section>
         </div>
       </div>
-      <Component currentUser={currentUser}/>
+      <Component currentUser={currentUser} songs={fetchsongs}/>
     </div>
   )
 }

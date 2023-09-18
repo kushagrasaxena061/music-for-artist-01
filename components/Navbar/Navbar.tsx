@@ -51,6 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({
       </Container>
       <div>
         {currentUser?.name}
+        {currentUser?.id}
       </div>
     </div>
   </div>
